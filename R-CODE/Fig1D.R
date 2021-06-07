@@ -8,10 +8,10 @@ library(ggplot2)
 library(tidyverse)
 library(ggh4x)
 ####### 
-strains <- read.csv("~/Google Drive/1.Forntier_Paper/1.Frontier_manusript/FINAL_VERSION/Code/Fig1D/TAS_BLAST_Mastersheet_Final.csv")
+strains <- read.csv("~/TAS_BLAST_Mastersheet_Final.csv")
 
 strains_l <- gather(strains, subject_isolate, hits, Bm8309_B1:Pg1054_St)
-strains_l <- separate(data = strains_l, col = subject_isolate, into = c("subject_isolate", "subject_clade"), sep = "_")   ######wrong be carful it should be last _
+strains_l <- separate(data = strains_l, col = subject_isolate, into = c("subject_isolate", "subject_clade"), sep = "_")   ###### be careful not to have '_' in strain name
 strains_l$strain <- sub("(.*)_.*", "\\1",  strains_l$consensus_ID) 
 
 # remove columns with zero hits
@@ -22,7 +22,7 @@ strains_l2$color <- ifelse(as.numeric(strains_l2$Clade_hits) == 1, 'Lineage spec
 strains_l2$levels <- paste("telConsensus")
 
 ########## Reading random sampling data
-Random <- read.csv("~/Google Drive/1.Forntier_Paper/1.Frontier_manusript/FINAL_VERSION/Code/Fig1D/Random_Sampling280bp_Final.csv")
+Random <- read.csv("~/Random_Sampling280bp_Final.csv")
 Random2 <- ddply(Random, c("strain", "query_clade","consensus_ID"), summarise, Clade_hits= length(unique(subject_clade)), 
                    strain_hits= length(unique(subject_isolate)), aver_hits= mean(hits))
 Random2$color <- ifelse(as.numeric(Random2$Clade_hits) == 1, 'Lineage specific (Random)', 'Lineage non-specific (Random)')
