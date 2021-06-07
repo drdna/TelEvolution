@@ -8,7 +8,7 @@ library(ggplot2)
 library(tidyverse)
 library(dplyr)
 
-strains4_l <- read.csv("~/Google Drive/1.Forntier_Paper/1.Frontier_manusript/FINAL_VERSION/Code/TJ_Final.csv")
+strains4_l <- read.csv("~/TJ_Final.csv")
 strains5_l <- ddply(strains4_l, c("query_clade","consensus_ID", "strain"), summarise, Clade_hits= length(unique(subject_clade)), 
                    strain_hits= length(unique(subject_isolate)), aver_hits= mean(hits))
 
