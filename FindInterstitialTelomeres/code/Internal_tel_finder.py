@@ -136,8 +136,8 @@ for i in ends:
 #print(len(final))
 
 
-##########summerizing the data      
-#### counting the dim, tri and tet mers
+##########summarizing the data      
+#### counting the di-, tri- and tetra- mers
 import pandas as pd 
 
 counting = []
@@ -152,5 +152,5 @@ count_series = df.groupby(["Genome","Mer"]).size()
 new_df = count_series.to_frame(name = 'size').reset_index()
 #print(new_df)   
 
-new_df.to_csv('~/FINAL_FIGURES_Tables/Countings/Summery_Internal_Tels_counts5_50bpGap_4.csv', index=False)
+new_df.to_csv('~/Summary_Internal_Tels_counts5_50bpGap_4.csv', index=False)
         
